@@ -21,8 +21,8 @@
 title: Open Multi-Echo Datasets
 description: >-
   A summary of available open multi-echo fMRI datasets
-baseurl: "/open-multi-echo-data" # the subpath of your site, e.g. /blog
-url: "https://me-ica.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "/open-physio-data" # the subpath of your site, e.g. /blog
+url: "https://pennlinc.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 
 # Build settings
 remote_theme: pages-themes/minimal@v0.2.0
