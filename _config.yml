@@ -18,9 +18,9 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Open Multi-Echo Datasets
+title: Open Physio Datasets
 description: >-
-  A summary of available open multi-echo fMRI datasets
+  A summary of available open fMRI datasets with concurrent physiological recordings.
 baseurl: "/open-physio-data" # the subpath of your site, e.g. /blog
 url: "https://pennlinc.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 
