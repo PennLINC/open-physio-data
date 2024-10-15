@@ -1,0 +1,95 @@
+---
+# Feel free to add content and custom Front Matter to this file.
+# To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
+
+layout: home
+---
+
+<h1> {{ site.title }} </h1>
+
+This collects and describes every open fMRI dataset with concurrent physio data that we know of.
+
+We define "open" as being freely available to the public without registration or a data use agreement.
+This excludes several datasets that are fundamentally open,
+but which have barriers to access that would prevent researchers from directly downloading the data.
+
+<h2>Datasets</h2>
+
+{% assign physio = "" | split: "" %}
+{% assign extras = "" | split: "" %}
+{% for post in site.categories.dataset %}
+  {% assign physio = physio | concat: post.physio %}
+  {% assign extras = extras | concat: post.extras %}
+{% endfor %}
+{% assign physio = physio | uniq | sort %}
+{% assign extras = extras | uniq | sort %}
+
+<style>
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  tr:hover {
+    background-color: #ddd;
+  }
+  th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+  }
+</style>
+
+<table>
+  <thead>
+    <tr>
+      <th style="max-width: 300px;">Title</th>
+      <th>URL</th>
+      <th>Scanner</th>
+      <th colspan="{{ physio.size }}">Physio Modalities</th>
+      <th colspan="{{ extras.size }}">Extra Features</th>
+    </tr>
+    <tr>
+      <th style="max-width: 300px;"></th>
+      <th></th>
+      <th></th>
+      {% for phys in physio %}
+        <th>{{ phys }}</th>
+      {% endfor %}
+      {% for extra in extras %}
+        <th>{{ extra }}</th>
+      {% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for post in site.categories.dataset %}
+      <tr>
+        <td style="max-width: 300px;"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></td>
+        <td style="text-align: center;"><a href="{{ post.website }}">Dataset</a></td>
+        <td style="text-align: center;">{{ post.scanner }}</td>
+        {% for phys in physio %}
+          <td style="text-align: center;">
+            {% if post.physio contains phys %}
+              X
+            {% endif %}
+          </td>
+        {% endfor %}
+        {% for extra in extras %}
+          <td style="text-align: center;">
+            {% if post.extras contains extra %}
+              X
+            {% endif %}
+          </td>
+        {% endfor %}
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
